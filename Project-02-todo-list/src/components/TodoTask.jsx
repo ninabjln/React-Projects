@@ -1,4 +1,3 @@
-import React from "react";
 import tickedIcon from "../assets/tick-1.png";
 import unTickedIcon from "../assets/not_tick-1.png";
 import deleteIcon from "../assets/delete.png";

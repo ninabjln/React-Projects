@@ -45,7 +45,7 @@ const Todo = () => {
   }, [todoList]);
 
   return (
-    <div className="bg-tertiary place-self-center w-11/12 max-w-md flex flex-col p-7 min-h-137.5 rounded-[20px]">
+    <div className="bg-tertiary place-self-center w-11/12 max-w-md flex flex-col p-7 min-h-137.5 rounded-[20]">
       {/*----title----*/}
       <div className="flex items-centern mt-7 gap-2">
         <img className="w-7.5 h-7.5" src={todoIcon} alt="" />
@@ -69,10 +69,10 @@ const Todo = () => {
       </div>
       {/*----todo list----*/}
       <div>
-        {todoList.map((item, index) => {
+        {todoList.map((item) => {
           return (
             <TodoTask
-              key={index}
+              key={item.id}
               todo={item.todo}
               id={item.id}
               isComplete={item.isComplete}
