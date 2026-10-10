@@ -1,0 +1,116 @@
+section {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-box {
+  max-height: 120px;
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+}
+
+.kit-image {
+  object-fit: contain;
+}
+
+form {
+  width: 100%;
+  background-color: var(--background-color);
+  padding: 30px 40px;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+h1 {
+  color: var(--primary-color);
+  font-size: clamp(24px, 4vw, 20px);
+  margin: 15px 0;
+}
+
+.input-field {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.input-field input {
+  height: 40px;
+  padding-inline: 14px;
+  background-color: var(--background-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  width: 80%;
+  outline: none;
+}
+
+.input-field input:focus {
+  border-color: var(--secondary-color);
+}
+
+.input-field input:not(:focus).input-field:not(:placeholder-shown) ~ label {
+  color: var(--secondary-color);
+}
+
+.input-field label {
+  position: absolute;
+  color: var(--secondery-color);
+  pointer-events: none;
+  background-color: var(--background-color);
+  left: 35px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+  color: #4f1c5194;
+  font-size: 12px;
+  font-weight: 500;
+  padding-inline: 4px;
+}
+
+.input-field input:focus ~ label,
+.input-field input:not(:placeholder-shown) ~ label {
+  top: 0;
+  left: 35px;
+  transform: translatey(-50%);
+  font-size: 10px;
+  color: var(--secondary-color);
+}
+
+form button {
+  height: 45px;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  width: 80%;
+}
+
+form button:disabled {
+  height: 45px;
+  background-color: #dc6a197d;
+  color: #4f1c5194;
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  width: 80%;
+}
+
+.link-text {
+  margin-top: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}

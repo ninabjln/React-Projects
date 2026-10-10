@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import UserNameField from "./UserNameField";
 import PasswordField from "./PasswordField";
-
+import kitImage from "../assets/kit-image.png";
+import "./SignupForm.css";
 const SignupForm = () => {
-  const errRef = useRef();
-
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -35,8 +34,11 @@ const SignupForm = () => {
         </section>
       ) : (
         <section>
-          <h1>Signup form</h1>
+          <div className="image-box">
+            <img className="kit-image" src={kitImage} alt="" />
+          </div>
           <form onSubmit={handleSubmit}>
+            <h1>Get Started</h1>
             <UserNameField
               user={user}
               setUser={setUser}
@@ -62,14 +64,14 @@ const SignupForm = () => {
             >
               Signup
             </button>
-          </form>
-          <p>
+            <p className="link-text">
             Already have an account?
             {/* put a link later here */}
             <span className="login-link">
               <a href="#">Login</a>
             </span>
           </p>
+          </form>
         </section>
       )}
     </>

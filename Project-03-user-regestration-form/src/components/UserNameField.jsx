@@ -17,20 +17,12 @@ const UserNameField = ({ user, setUser, isUserValid, setIsUserValid }) => {
   }, [user]);
 
   return (
-    <>
-      <label htmlFor="user-input">
-        Username:
-        <span className={isUserValid ? "valid-icon" : "hide-icon"}>
-          green check icon
-        </span>
-        {/* check the ternory logic */}
-        <span className={!isUserValid || user ? "invalid-icon" : "hide-icon"}>
-          red check icon
-        </span>
-      </label>
+    <div className="input-field">
       <input
+      
         type="text"
         id="user-input"
+         placeholder=" "
         ref={userRef}
         autoComplete="off"
         onChange={(event) => setUser(event.target.value)}
@@ -39,7 +31,7 @@ const UserNameField = ({ user, setUser, isUserValid, setIsUserValid }) => {
         onFocus={() => setUserFocus(true)}
         onBlur={() => setUserFocus(false)}
       />
-      <p
+      {/* <p
         id="user-note"
         className={
           userFocus && user && !isUserValid ? "instructions" : "off-screen"
@@ -48,8 +40,18 @@ const UserNameField = ({ user, setUser, isUserValid, setIsUserValid }) => {
         4 to 24 charectors. <br />
         Must begin with a letter. <br />
         Letters, numbers, underscores, hyphenes allowed.
-      </p>
-    </>
+      </p> */}
+      <label htmlFor="user-input">
+        Username
+        {/* <span className={isUserValid ? "valid-icon" : "hide-icon"}>
+          green check icon
+        </span> */}
+        {/* check the ternory logic */}
+        {/* <span className={!isUserValid || user ? "invalid-icon" : "hide-icon"}>
+          red check icon
+        </span> */}
+      </label>
+    </div>
   );
 };
 
