@@ -15,7 +15,12 @@ const Form = () => {
     formState: { errors, isSubmitting },
   } = useForm<FormValues>();
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    await new Promise((resolve) => {
+      setTimeout(resolve, 2000);
+    });
+    console.log(data);
+  };
   return (
     <StyledWrapper>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
@@ -24,42 +29,62 @@ const Form = () => {
           <br />
           <span>sign up to continue</span>
         </div>
-        <input
-          className="input"
-          id="name"
-          placeholder="User Name"
-          type="text"
-          {...register("name", { required: "User Name is required" })}
-        />
-        {errors.name && <p>*{errors.name.message}</p>}
-        <input
-          className="input"
-          id="email"
-          placeholder="Email"
-          type="email"
-          {...register("email", {
-            required: "Email is required",
-            pattern: {
-              value: EMAIL_REGEX,
-              message: "Enter a valid email address",
-            },
-          })}
-        />
-        {errors.email && <p>*{errors.email.message}</p>}
-        <input
-          className="input"
-          id="password"
-          placeholder="Password"
-          type="password"
-          {...register("password", {
-            required: "Password is required",
-            minLength: {
-              value: 8,
-              message: "Password must be at least 8 characters",
-            },
-          })}
-        />
-        {errors.password && <p>*{errors.password.message}</p>}
+        <div className="flex flex-col gap-4 w-full items-center">
+          <div className="flex flex-col gap-3  w-full">
+            <label className="font-bold text-[#233851]" htmlFor="name">
+              Name:
+            </label>
+            <input
+              className="input"
+              id="name"
+              placeholder="User Name"
+              type="text"
+              {...register("name", { required: "User Name is required" })}
+            />
+            {errors.name && <p>*{errors.name.message}</p>}
+          </div>
+
+          <div className="flex flex-col gap-2  w-full">
+            <label className=" font-bold text-[#233851]" htmlFor="email">
+              Email:
+            </label>
+            <input
+              className="input"
+              id="email"
+              placeholder="Email"
+              type="email"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: EMAIL_REGEX,
+                  message: "Enter a valid email address",
+                },
+              })}
+            />
+            {errors.email && <p>*{errors.email.message}</p>}
+          </div>
+
+          <div className="flex flex-col gap-2 w-full">
+            <label htmlFor="password" className=" font-bold text-[#233851]">
+              Password:
+            </label>
+            <input
+              className="input"
+              id="password"
+              placeholder="Password"
+              type="password"
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 8,
+                  message: "Password must be at least 8 characters",
+                },
+              })}
+            />
+            {errors.password && <p>*{errors.password.message}</p>}
+          </div>
+        </div>
+
         <button
           type="submit"
           disabled={isSubmitting}
@@ -74,17 +99,18 @@ const Form = () => {
 
 const StyledWrapper = styled.div`
   .form {
-    width: 400px;
+    width: min(400px, calc(100vw - 80px));
+    box-sizing: border-box;
     --input-focus: #2d8cf0;
-    --font-color: #323232;
-    --font-color-sub: #666;
+    --font-color: #1e3e62;
+    --font-color-sub: #5d5d5d;
     --bg-color: beige;
     --main-color: black;
     padding: 20px;
-    background: #89a482;
+    background: #aec4d4;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     gap: 20px;
     border-radius: 5px;
@@ -92,15 +118,24 @@ const StyledWrapper = styled.div`
     box-shadow: 4px 4px var(--main-color);
   }
   .form p {
+    margin-top: 4px;
     color: #790d16;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 600;
   }
   .title {
+  
+    padding: 5px 10px;  
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    jusyify-content: center;
+    width: 100%;
     color: var(--font-color);
     font-weight: 900;
-    font-size: 30px;
+    font-size: 24px;
     margin-bottom: 4px;
+    margin-top: 4px;
   }
 
   .title span {
@@ -110,7 +145,7 @@ const StyledWrapper = styled.div`
   }
 
   .input {
-    width: 300px;
+    width: 100%
     height: 40px;
     border-radius: 5px;
     border: 2px solid var(--main-color);
@@ -129,7 +164,7 @@ const StyledWrapper = styled.div`
   }
 
   .input:focus {
-    border: 2px solid #f4d35e;
+    border: 2px solid #83b4ff;
   }
 
   .login-with {
